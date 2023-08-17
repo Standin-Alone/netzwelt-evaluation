@@ -18,7 +18,7 @@ const  Base = ({children}:any) => {
 
 
     return(
-        <div className="flex justify-center  mt-40">
+        <div className="h-screen bg-gradient-to-b from-orange-100 to-orange-400 flex justify-center">
             {children}
         </div>
     )
