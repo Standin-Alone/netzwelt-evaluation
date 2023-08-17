@@ -2,6 +2,9 @@
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import axios from "axios";
+import { useRouter } from "next/router";
+import  { useContext } from "react"
+import { Context } from "@/components/context";
 
 export default function Login() {
 
@@ -9,32 +12,34 @@ export default function Login() {
     username:'',
     password:''  
   }
+
+  const [context,setContext] = useContext<any>(Context);
+
+
   const validationSchema = Yup.object({
     username: Yup.string().required('Please enter your username.'),
     password: Yup.string().required('Please enter your password.')
   });
 
+  const router = useRouter();
 
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values) => {     
-
-      let header = {
-        headers:{
-            "Content-Type":"application/json",
-            "accept":"text/plain"
-        }
-   }
-
-      let getSignIn = await axios.post('/api/signIn',values,);
+  
+      let getSignIn = await axios.post('/api/signIn',values);
     
       if(getSignIn.status == 200){
         if(getSignIn.data){
-          if(getSignIn.data.message){
+          if(getSignIn.data.message){            
             alert(getSignIn.data.message)
           }else{
-            alert('Successfully logged in.')
+            sessionStorage.setItem('userInfo',getSignIn.data);
+            setContext((prevContext:any)=>({...prevContext,userInfo:getSignIn.data}));
+            
+            alert('Successfully logged in.')            
+            router.push('/home');
           }
         }else{
           alert('Invalid username or password.');
