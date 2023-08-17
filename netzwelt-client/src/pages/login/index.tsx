@@ -32,8 +32,7 @@ export default function Login() {
     
       if(getSignIn.status == 200){
         if(getSignIn.data){
-          if(getSignIn.data.message){         
-            
+          if(getSignIn.data.message){                     
             setLoading(false);   
             alert(getSignIn.data.message)
           }else{
