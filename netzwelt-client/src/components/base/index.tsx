@@ -1,12 +1,14 @@
-import {useEffect,useState} from 'react';
+import {useEffect,useContext} from 'react';
 import { useRouter } from 'next/router';
+import { Context } from '../context';
+
 const  Base = ({children}:any) => {
-   
+    const [context,setContext] = useContext<any>(Context);
     const router = useRouter()
 
     useEffect(()=>{
-        let getUserInfo = sessionStorage.getItem('userInfo');
-             
+        let getUserInfo = localStorage.getItem('userInfo');
+       
         if(getUserInfo){
             router.push('/home');
         }else{

@@ -35,9 +35,8 @@ export default function Login() {
           if(getSignIn.data.message){            
             alert(getSignIn.data.message)
           }else{
-            sessionStorage.setItem('userInfo',getSignIn.data);
             setContext((prevContext:any)=>({...prevContext,userInfo:getSignIn.data}));
-            
+            localStorage.setItem('userInfo',getSignIn.data);                        
             alert('Successfully logged in.')            
             router.push('/home');
           }

@@ -4,10 +4,10 @@ import "../../public/globals.css";
 import Base from '@/components/base';
 import { Context } from '@/components/context';
 import { useState } from 'react';
-
+import Script from "next/script";
 export default function MyApp({ Component, pageProps }: AppProps) {
     const [ context, setContext ] = useState(pageProps);
-
+    
     return(
     <>
         <Context.Provider value={[context,setContext]}>
@@ -16,6 +16,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                 <Component {...pageProps} />     
             </Base>        
         </Context.Provider>
+        <Script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/tw-elements.umd.min.js" />
     </>
     )
 }

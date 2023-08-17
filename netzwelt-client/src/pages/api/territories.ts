@@ -23,9 +23,20 @@ export default async function handler(req: NextApiRequest,
           let cleanTerritories = territories.filter((item:any)=>item.parent == null).sort((a:any, b:any) => a.name.localeCompare(b.name));;
 
           cleanTerritories.map((item:any)=>{
-            item.children = territories.filter((childItem:any)=>childItem.parent == item.id).sort((a:any, b:any) => a.name.localeCompare(b.name));
+           let children = territories.filter((childItem:any)=>childItem.parent == item.id).sort((a:any, b:any) => a.name.localeCompare(b.name));
+
+           item.children = children;
+
             return item;
           });
+
+
+          cleanTerritories.map((item:any)=>{
+            item.children.map((subItem:any)=>{
+              let children = territories.filter((childItem:any)=>childItem.parent == subItem.id).sort((a:any, b:any) => a.name.localeCompare(b.name));
+              subItem.children = children;
+            })
+          })
           
 
           return res.status(200).send(cleanTerritories);
