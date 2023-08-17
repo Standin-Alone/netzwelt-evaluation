@@ -19,20 +19,25 @@ export default function Login() {
     initialValues,
     validationSchema,
     onSubmit: async (values) => {     
-      let headers ={
-        headers: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-          "Access-Control-Allow-Origin":"*"
+
+      let header = {
+        headers:{
+            "Content-Type":"application/json",
+            "accept":"text/plain"
         }
-      }
-      let getSignIn = await axios.post('https://netzwelt-devtest.azurewebsites.net/Account/SignIn',values,headers);
+   }
+
+      let getSignIn = await axios.post('/api/signIn',values,);
     
       if(getSignIn.status == 200){
         if(getSignIn.data){
-          alert('Succesfully logged in.');
+          if(getSignIn.data.message){
+            alert(getSignIn.data.message)
+          }else{
+            alert('Successfully logged in.')
+          }
         }else{
-          alert('Incorrect username or password.');
+          alert('Invalid username or password.');
         }          
       }else{  
         alert('Something went wrong.')
