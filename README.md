@@ -1,5 +1,5 @@
 Netzwelt Technical Exam
-Author: John Edcel Zenarosa
+
 
 Instructions:
 
@@ -11,3 +11,6 @@ In terminal:
 3. npm install
 4. npm run dev
 5. Access it in browser using the http://localhost:3000/
+
+
+Author: John Edcel Zenarosa
