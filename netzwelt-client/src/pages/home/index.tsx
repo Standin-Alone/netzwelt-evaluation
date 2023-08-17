@@ -48,7 +48,13 @@ const Home = () => {
 
                 <ul className="pl-5 mt-2 space-y-1 list-decimal list-inside !visible hidden" id={`subCollapse${itemChild.name.substring(0,3)}${indexChild}`} data-te-collapse-item>
                   {itemChild.children.map((itemSubChild: any,indexSubChild:any) => (
-                    <li key={indexSubChild}>{itemSubChild.name}</li>
+                    <li key={indexSubChild}>{itemSubChild.name}                    
+                    <ul className="pl-5 mt-2 space-y-1 list-decimal list-inside !visible hidden" id={`subCollapse${itemSubChild.name.substring(0,3)}${indexChild}`} data-te-collapse-item>
+                    {itemSubChild.children.map((itemFinalSubChild: any,indexFinalSubChild:any) => (
+                        <li key={indexFinalSubChild}>{itemFinalSubChild.name}</li>
+                      ))}
+                    </ul>                    
+                    </li>
                   ))}
                 </ul>
               </li>
