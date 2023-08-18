@@ -40,7 +40,7 @@ export default function Login() {
             localStorage.setItem('userInfo',getSignIn.data);                        
             setContext(getSignIn.data.data);
             alert('Successfully logged in.')            
-            router.push('/home');
+            router.push('/home', undefined, { shallow:true });
           }
         }else{
           setLoading(false); 

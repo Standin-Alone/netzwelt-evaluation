@@ -5,6 +5,7 @@ import Base from '@/components/base';
 import { Context } from '@/components/context';
 import { useState } from 'react';
 import Script from "next/script";
+
 export default function MyApp({ Component, pageProps }: AppProps) {
     const [ context, setContext ] = useState(pageProps);
     
